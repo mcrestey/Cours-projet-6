@@ -2,7 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
-const stuffRoutes = require('./routes/stuff')
+
+const stuffRoutes = require('./routes/stuff');
+const userRoutes = require('./routes/user');
 
 //Se connecter à mongoDB
 mongoose.connect('mongodb+srv://mcrestey:womhek-sIgwid-qanby4@cluster0.ag8xmxh.mongodb.net/?retryWrites=true&w=majority',
@@ -26,6 +28,7 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 
 
+app.use('.api/auth', userRoutes);
 app.use('/api/stuff', stuffRoutes);
 
 module.exports = app;
